@@ -1,5 +1,7 @@
 <?php
 
+use \Illuminate\Support\Facades\Redirect;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,7 +14,10 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return Redirect::to('customers');
 });
 
-Route::get('/customer', 'App\Http\Controllers\CustomerController');
+Route::get('customers', 'CustomerController@index')->name('customers');
+Route::get('customers/create', 'CustomerController@createCustomer')->name('createCustomer');
+Route::get('customers/edit/{id}', 'CustomerController@editCustomer')->name('editCustomer');
+Route::post('customers/submit', 'CustomerController@submitCustomer')->name('submitCustomer');
